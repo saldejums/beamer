@@ -1,0 +1,244 @@
+\documentclass[envcountsect]{beamer}
+
+\usetheme{Copenhagen}
+\usefonttheme{professionalfonts}
+\usepackage{amsthm,amssymb,amsmath}
+\usepackage{fontspec}
+\usepackage{breqn}
+
+\setbeamertemplate{theorems}[numbered]
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{prop}{Proposition}
+
+\author{Emils Kalugins}
+
+\title{On the Mason-Stothers theorem}
+
+\institute{University of Latvia}
+
+\date{\today}
+
+\begin{document}
+\begin{frame}
+\maketitle
+
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\frametitle{Goal}
+
+\begin{theorem*}[Mason-Stothers theorem]
+Let $f,g,h$ be non-constant relatively prime polynomials satisfying $f+g=h$
+Then \[\operatorname{deg}f, \operatorname{deg}g, \operatorname{deg}h \leq
+  n_0(fgh) -1.\]
+\end{theorem*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Justification}
+\begin{theorem}
+Let $n$ be an integer $\geq 3.$ There is no solution of the equation \[u^n +
+  v^n = w^n\] with non-constant relatively prime polynomials $u,v,w$. 
+\end{theorem}
+
+\end{frame}
+
+\section{Refresher}
+\begin{frame}
+\frametitle{Polynomials}
+We will work over an algebraically closed field $F$ of characteristic 0, the complex
+numbers if you wish.
+
+Let $f(x) \in K[x]$ be a non-zero polynomial, with its factorization
+\begin{equation} \label{eq:fac}
+  f(x) = c\prod_{i=1}^r(t-\alpha_i)^{m_i}=c(t-\alpha_1)^{m_{1}} \dots (t-\alpha_r)^{m_r},
+\end{equation}
+with a non-zero constant $c$, and the distinct roots $\alpha_i \; (i=1,\dots,r).$
+\end{frame}
+
+\begin{frame}
+\frametitle{Polynomials}
+
+It is convenient to write the factorization of $f(x)$ in the form
+\[
+  f(x) = (x-\alpha)^{m(\alpha)}g(x)
+\]
+where \( g ( \alpha ) \neq 0 \) and $ m ( \alpha ) $ is the
+multiplicity of $\alpha$. If $ \alpha = \alpha_k $ for some index $k$, then
+\[
+f(x) = c(x- \alpha_k )^{m_k}\prod_{i \neq k}(x-\alpha_i)^{m_i},
+\]
+and $g(x) = c\prod_{i \neq k}(x-\alpha_i)^{m_i}$.
+
+
+\end{frame}
+
+\begin{frame}
+\section{Preliminaries}
+\frametitle{Statement}
+\begin{lemma}
+Let $f(x)$ be a polynomial over an algebraically closed field. Let $\alpha$ be a
+root of $f$ with multiplicity $m(\alpha)$. Then the multiplicity of $\alpha$ in
+$f'(x)$ is $m(\alpha) - 1.$ 
+\end{lemma}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proof}
+\begin{proof}
+Write $f(x) = (x-\alpha)^{m}g(t)$ with $g(\alpha) \neq 0.$ By taking the
+derivative of $f$, we get.
+\begin{align*}
+  f'(x) &= (x-\alpha)^mg'(x) + m(x-\alpha)^{m-1}g(x) \\
+        &= (x-\alpha)^{m-1}((x-\alpha)g'(x)+mg(t)) = (x-\alpha)^{m-1}h(x)
+\end{align*}  
+where $h(x) = ((x-\alpha)g'(x)+mg(x))$. Obviously $h(\alpha) \neq 0.$ So that
+$m-1$ is the highest power such that $(x-\alpha)^{m-1}$ divides $f'(x).$
+
+\end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Statement}
+  Define $n_0(f)$ to be the number of distinct roots of $f$.
+  \begin{prop}
+   Let $f$ be a non-constant polynomial. Suppose that $f(t)$ has the
+   factorization \eqref{eq:fac}. Then the $g.c.d. \; j(f,f')$ is
+   \[
+     (f,f') = c_1\prod_{i=1}^r(x-\alpha)^{m_i-1},
+   \]
+   with some constant $c_1.$ In particular,
+   \[
+     \operatorname{deg}(f,f') = \operatorname{deg}f - n_0(f).
+   \]
+  \end{prop}
+\end{frame}
+
+\section{The Mason-Stothers theorem}
+\begin{frame}
+\frametitle{Significance}
+
+It is immediate that if $f,g$ are non-zero polynomials, then
+\[
+n_0(fg) \leq n_0(f) + n_0(g).
+\]
+If in addition $f,g$ are coprime, then equality holds.
+
+It is obvious that $\operatorname{deg} f$ can be very large, but $n_0(f)$ may be
+small.
+
+\begin{example}
+  \[
+f(x) = (x-\alpha)^{1000}
+ \]
+ The polynomial $f$ has degree 1000, but $n_0(f) = 1.$
+\end{example}
+The Mason-Stothers theorem gives a remarkable additive condition under which the degree cannot be large.
+\end{frame}
+
+\begin{frame}
+\frametitle{Formulation}
+
+\begin{theorem*}[Mason-Stothers theorem]
+Let $f,g,h$ be non-constant relatively prime polynomials satisfying $f+g=h$
+Then \[\operatorname{deg}f, \operatorname{deg}g, \operatorname{deg}h \leq
+  n_0(fgh) -1.\]
+\end{theorem*}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proof}
+  \begin{proof}\let\qed\relax
+    We first note the identity
+    \[
+      f'g - fg' = f'h - fh'.
+    \]
+    This trivially follows from $f'+g' = h'.$ \\
+    We have $f'g - fg' \neq 0,$
+    otherwise $g$ would divide $g'$ since $f,g$ are relatively prime and non-constant. \\
+    Then we noteice that the g.c.d. $(f, f')$ divides the left side and so does
+    $(g,g')$, and $(h,h')$ divides the right side, which is equal to the left
+    side. Therefore, since $f,g,h$ are relatively prime,
+    $$
+      \text{the product } (f,f')(g,g')(h,h') \text{ divides } f'g - fg'.
+    $$
+
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proof}
+  \begin{proof}\let\qed\relax
+    This yields an inequality between the degress, namely,
+    \begin{align} 
+      \operatorname{deg}(f,f') + \operatorname{deg}(g,g') + \operatorname{deg}(h,h') &\leq
+      \operatorname{deg}(f'g - fg') \label{ineq} \\ 
+      &\leq \operatorname{deg}f + \operatorname{deg}g - 1 \nonumber
+    \end{align}
+    We now use Proposition 1 for each of $f,g,h:$
+    \begin{align*}
+      \operatorname{deg}(f,f') &= \operatorname{deg}f - n_0(f) \\
+      \operatorname{deg}(g,g') &= \operatorname{deg}g - n_0(g) \\
+      \operatorname{deg}(h,h') &= \operatorname{deg}h - n_0(h)
+    \end{align*}
+    \end{proof}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proof}
+  \begin{proof}
+We substitue these equalities in \eqref{ineq}and, after simplifying, get the
+following:
+\[
+ \operatorname{deg}h \leq n_0(f) + n_0(g) + n_0(h) - 1 = n_0(fgh) - 1.
+\]
+The result for $f,g$ follows from the fact that $f'g - fg' = f'h - fh' =
+h'g-hg'$ and by changing the appropriate value in \eqref{ineq}.
+
+  \end{proof}
+\end{frame}
+
+\section{Consequences}
+\begin{frame}
+\frametitle{Fermat's analogue} 
+\begin{theorem*}
+Let $n$ be an integer $\geq 3.$ There is no solution of the equation \[u^n +
+  v^n = w^n\] with non-constant relatively prime polynomials $u,v,w$. 
+\end{theorem*}
+
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proof}
+
+  \begin{proof}
+    \small
+    Let $f =u^n, g = v^n,$ and $h=w^n.$ Then by the Mason-Stothers theorem
+    \[
+      \operatorname{deg}u^n \leq n_0(u^nv^nw^n) - 1.
+    \]
+    However, $\operatorname{deg}u^n=n \cdot \operatorname{deg}u$ and $n_0(u^n) =
+    n_0(f) \leq \operatorname{deg}u.$ Hence 
+\[
+  n \cdot \operatorname{deg}u \leq \operatorname{deg}u + \operatorname{deg}v +
+  \operatorname{deg}w - 1.
+\]
+   Similarly, we can obtain the analogous inequalities for $v$ and $w.$ \\
+Adding the three inequalities yields
+
+\[
+  n(\operatorname{deg}uvw) \leq 3(\operatorname{deg}uvw) -3 < 3(\operatorname{deg}uvw).
+\]
+Cancelling $\operatorname{deg}uvw$ yields $ n < 3$ , thus proving the theorem.
+\end{proof}
+\end{frame}
+
+\end{document}
