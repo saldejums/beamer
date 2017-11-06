@@ -9,7 +9,7 @@
 \setbeamertemplate{theorems}[numbered]
 
 \newtheorem*{theorem*}{Theorem}
-\newtheorem{prop}{Proposition}
+\newtheorem{prop}{Corollary}
 
 \author{Emils Kalugins}
 
@@ -30,7 +30,7 @@
 \begin{frame}
 \frametitle{Goal}
 
-\begin{theorem*}[Mason-Stothers theorem]
+\begin{theorem*}[Mason-Stothers]
 Let $f,g,h$ be non-constant relatively prime polynomials satisfying $f+g=h$
 Then \[\operatorname{deg}f, \operatorname{deg}g, \operatorname{deg}h \leq
   n_0(fgh) -1.\]
@@ -40,7 +40,7 @@ Then \[\operatorname{deg}f, \operatorname{deg}g, \operatorname{deg}h \leq
 \begin{frame}
 \frametitle{Justification}
 \begin{theorem}
-Let $n$ be an integer $\geq 3.$ There is no solution of the equation \[u^n +
+Let $n$ be an integer $\geq 3.$ There is no solution to the equation \[u^n +
   v^n = w^n\] with non-constant relatively prime polynomials $u,v,w$. 
 \end{theorem}
 
@@ -54,7 +54,7 @@ numbers if you wish.
 
 Let $f(x) \in K[x]$ be a non-zero polynomial, with its factorization
 \begin{equation} \label{eq:fac}
-  f(x) = c\prod_{i=1}^r(t-\alpha_i)^{m_i}=c(t-\alpha_1)^{m_{1}} \dots (t-\alpha_r)^{m_r},
+  f(x) = c\prod_{i=1}^r(x-\alpha_i)^{m_i}=c(x-\alpha_1)^{m_{1}} \dots (x-\alpha_r)^{m_r},
 \end{equation}
 with a non-zero constant $c$, and the distinct roots $\alpha_i \; (i=1,\dots,r).$
 \end{frame}
@@ -71,7 +71,7 @@ multiplicity of $\alpha$. If $ \alpha = \alpha_k $ for some index $k$, then
 \[
 f(x) = c(x- \alpha_k )^{m_k}\prod_{i \neq k}(x-\alpha_i)^{m_i},
 \]
-and $g(x) = c\prod_{i \neq k}(x-\alpha_i)^{m_i}$.
+and $g(x) = c\prod\limits_{i \neq k}(x-\alpha_i)^{m_i}$.
 
 
 \end{frame}
@@ -106,7 +106,7 @@ $m-1$ is the highest power such that $(x-\alpha)^{m-1}$ divides $f'(x).$
   Define $n_0(f)$ to be the number of distinct roots of $f$.
   \begin{prop}
    Let $f$ be a non-constant polynomial. Suppose that $f(t)$ has the
-   factorization \eqref{eq:fac}. Then the $g.c.d. \; j(f,f')$ is
+   factorization \eqref{eq:fac}. Then the $g.c.d. \; (f,f')$ is
    \[
      (f,f') = c_1\prod_{i=1}^r(x-\alpha)^{m_i-1},
    \]
@@ -116,7 +116,6 @@ $m-1$ is the highest power such that $(x-\alpha)^{m-1}$ divides $f'(x).$
    \]
   \end{prop}
 \end{frame}
-
 \section{The Mason-Stothers theorem}
 \begin{frame}
 \frametitle{Significance}
@@ -179,7 +178,7 @@ Then \[\operatorname{deg}f, \operatorname{deg}g, \operatorname{deg}h \leq
       \operatorname{deg}(f'g - fg') \label{ineq} \\ 
       &\leq \operatorname{deg}f + \operatorname{deg}g - 1 \nonumber
     \end{align}
-    We now use Proposition 1 for each of $f,g,h:$
+    We now use Corrolary 1 for each of $f,g,h:$
     \begin{align*}
       \operatorname{deg}(f,f') &= \operatorname{deg}f - n_0(f) \\
       \operatorname{deg}(g,g') &= \operatorname{deg}g - n_0(g) \\
@@ -193,7 +192,7 @@ Then \[\operatorname{deg}f, \operatorname{deg}g, \operatorname{deg}h \leq
 \begin{frame}
   \frametitle{Proof}
   \begin{proof}
-We substitue these equalities in \eqref{ineq}and, after simplifying, get the
+We substitue these equalities in \eqref{ineq} and, after simplifying, get the
 following:
 \[
  \operatorname{deg}h \leq n_0(f) + n_0(g) + n_0(h) - 1 = n_0(fgh) - 1.
@@ -208,7 +207,7 @@ h'g-hg'$ and by changing the appropriate value in \eqref{ineq}.
 \begin{frame}
 \frametitle{Fermat's analogue} 
 \begin{theorem*}
-Let $n$ be an integer $\geq 3.$ There is no solution of the equation \[u^n +
+Let $n$ be an integer $\geq 3.$ There is no solution to the equation \[u^n +
   v^n = w^n\] with non-constant relatively prime polynomials $u,v,w$. 
 \end{theorem*}
 
@@ -241,4 +240,9 @@ Cancelling $\operatorname{deg}uvw$ yields $ n < 3$ , thus proving the theorem.
 \end{proof}
 \end{frame}
 
+\begin{frame}
+  \frametitle{References}
+  Lang, Serge. \textit{Undergraduate Algebra.} 3rd ed. New York:
+  Springer-Verlang, 2005. pp. 105-169. ISBN0-387-22025-9.
+\end{frame}  
 \end{document}
