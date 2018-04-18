@@ -1,0 +1,168 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm,bottom=2cm,right=2cm,left=2cm]{geometry}
+\usepackage{polyglossia}
+\usepackage{floatrow}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\setdefaultlanguage{latvian}
+\usepackage{tabu}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{soul}
+\usepackage{xunicode}
+\usepackage{fixlatvian}
+\usepackage{paracol}
+\usepackage{indentfirst}
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{3pt}
+\usepackage[document]{ragged2e}
+\floatsetup[table]{capposition=top}
+
+\begin{document}
+
+\RaggedLeft
+  Latvijas Universitāte \\
+  Fizikas un matemātikas fakultātes \\
+  Matemātikas BSP 2. kursa students \\ 
+  Emīls Kalugins (ek16073), Lauma Luckāne un Mārtiņš Gailītis\\ 
+  11.04.2018 \\
+
+\Centering
+{\large{Darbs Nr. 47}} \\ ~ \\ 
+
+\textit{\large{Šķidruma viskozitātes noteikšana ar Stoksa metodi}} \\ ~ \\ 
+
+\RaggedRight
+\columnratio{0.25}
+
+\begin{paracol}{2}
+  \ul{Darba mērķis:}
+  \switchcolumn
+  Iepazīties ar šķidrumu viskozitātes noteikšanas metodi. Novērtēt viskozitātes
+  lomu dabā un tehnikā.
+   \switchcolumn*
+  \ul{Darba uzdevumi:}
+  \switchcolumn
+  \textbf{1. Pārbaudīt atsevišķas lodītes grimšanas.
+    \\
+    2. Noteikt glicerīna viskozitātes koeficientu ar Stoksa metodi.\\
+  3. Salīdzināt iegūto viskozitātes koeficientu ar darba aprakstā pieejamiem
+  datiem par glicerīna viskozitāti pie dažādām temperatūrām.\\}
+
+  \switchcolumn*
+  \ul{Darba piederumi:}
+
+  \switchcolumn
+  Mērmikroskops (Apjoms - 3.00 mm, Kļūda - 0.02 mm)\\
+  Cilindrs ar glicerīnu (Diametrs - 3.2 cm, Kļūda - 0.2 cm)\\
+  Hronometrs (Sistemātiskā kļūda - 0.09 s)
+
+\end{paracol}
+
+\justify
+
+\noindent
+\ul{Jautājumi:}\\
+
+\noindent
+1. Kas ir viskozitāte?\\
+Tā ir iekšējas berzes spēks starp šķidruma vai gāzes slāņiem.\\
+2. Uzrakstiet Ņūtona 2. likumu un atšīfrējiet. \\
+F = ma. m - masa kg, F - spēks, N, a - paātrinājums, $\text{m/s}^2$.\\
+3. Pieņemsim, ka laboratorijā atrodas kaste, kurā ir vakuums. Jūs kastes
+augšpusē ievietojat mazu metāla lodīti un palaižat to vaļā. Kas notiek ar
+lodīti? Kā mainās tās ātrums? Kā mainās tās paātrinājums?\\ 
+Uz to darbosies tikai smaguma spēks, un tā kā tas ir vakuums, tad nav berzes un
+tā paātrināsies neierobežoti ar paātrinājumu, kas vienāds ar brīvās krišanas
+paātrinājumam, līdz nokritīs. \\
+4. Jūs ieliekat lodīti traukā ar glicerīnu (augšpusē) un palaižat to vaļā. Kādi
+3 spēki iedarbojas uz lodīti? Kādos virzienos ir vērsti šie spēki? \\
+Darbosies smaguma spēks, Arhimēda spēks un šķidruma pretestības spēks. Pirmais spēks būs vērsts
+uz ``leju'', bet pārējie uz ``augšu''.\\
+5. Kuri no iepriekšējā punktā aprakstītajiem spēkiem ir atkarīgi no lodītes
+ātruma? Kuri no spēkiem ir atkarīgi no viskozitātes koeficienta? \\
+Abi šie spēki ir šķidruma pretestības spēks.\\
+6. Ja lodīte kustas ar konstantu ātrumu, ko ir iespējams pateikt par spēkiem,
+kas darbojas uz lodīti? \\
+To kopējā summa ir 0 jeb pēc moduļa pretēji vērstie spēki ir vienādi.\\
+
+
+
+
+
+
+
+\noindent
+\ul{Teorētiskais pamatojums:}\\
+
+Stokss atklāja, ka, ja lodīte ar rādiusu $r$ kustas šķidrumā ar nelielu
+ātrumu $v$, tad šķidruma pretestības spēks $F$ izsekāms šādi -
+$$
+F = 6\pi\eta rv,
+$$
+kur $\eta$ - šķidruma viskozitātes koeficients. Ja lodīti palaiž šķidrumā, tad
+smaguma spēka dēļ tā paātrināsies līdz brīdim, kad pretestības spēks kopā ar
+Arhimēda spēku izslēgs smaguma spēku un lodīte kustēsies ar konstantu ātrumu. Ja
+ar $\rho$ apzīmē lodītes blīvumu un $\rho_0$ šķidruma blīvumu, tad varam
+secināt, ka pie konstanta ātruma iestāšanas brīža spēkā ir sekojošais:
+$$
+\frac{4}{3}\pi r^3 g = 6\pi\eta rv +\frac{4}{3}\pi r^3 \rho_0 g.
+$$
+Tad, lai atrastu viskozitātes koeficientu, izsaka $\eta$ un iegūst -
+$$
+\eta = \frac{1}{18}\cdot g\cdot (\rho-\rho_0)\cdot \frac{d^2}{v_{max}}.
+$$
+
+Bet, ja ir konstants ātrums, tad to var izteikt kā attiecību starp ceļu $s$,
+kurā lodīte noceļo laikā $t$. Vēl papildus var ņemt vērā to, ka Stokss savu
+likumu veidojis bezgalīgam tilpumam, kur neņem vērā sienas iedarbību, tāpēc
+ātrums tiek koriģēts ar Ladenburga korekciju -
+$$
+v_{max} = v_{noteiktais}\cdot\left(1+2.4\frac{d}{D}\right),
+$$
+kur $D$ - diametrs tvertnei. Rezumējot iegūstam sakarību, ko arī izmanto
+eksperimentā, -
+$$
+\eta = \frac{1}{18}\cdot g\cdot (\rho-\rho_0)\cdot \frac{d^2\cdot t}{s\cdot \left(1+2.4\frac{d}{D}\right)}.
+$$
+\newpage
+
+\noindent
+\ul{Mērskaitļu tabula:} \\
+
+\begin{table}[h!]
+  \begin{adjustbox}{width=1\textwidth}
+  \begin{tabular}{||c|c|c|c|c|c|c|c|c|c||}
+  \hline 
+
+   \hline 
+  \end{tabular}
+  \end{adjustbox}
+
+  \caption{Materiāla liece}
+\end{table}
+
+\noindent
+\ul{Aprēķinu piemēri:}\\
+
+\noindent
+
+
+\noindent
+\newpage
+
+\noindent
+\ul{Grafiks:}
+
+\begin{figure}[h!]
+  \centering
+\includegraphics[width = 0.9\textwidth]{visc}
+\caption{Glicerīna viskozitātes koeficienta atkarība no temperatūras}
+\end{figure}
+
+
+\noindent
+\ul{Secinājumi:} \\
+
+
+\end{document}
