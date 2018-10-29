@@ -1,0 +1,98 @@
+\documentclass[envcountsect]{beamer}
+
+\usetheme{Copenhagen}
+\usefonttheme{professionalfonts}
+
+\usepackage{amsthm,amssymb,amsmath}
+\usepackage{fontspec}
+\usepackage{breqn}
+
+
+\begin{document}
+\begin{frame}
+\begin{definition}
+A set function $\mu:2^{X} \rightarrow \mathbb{R}^+$ is a fuzzy measure on $(X, 2^X)$ if it satisfies the following axioms:
+
+\begin{enumerate}
+\item $\mu(\emptyset) =0$ \\
+\item $A \subseteq B \text{ implies } \mu(A) \leq \mu(B)$ for $A,B \in 2^X$
+\end{enumerate}
+
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $\mu$ be a fuzzy measure on $(X,2^X)$. Then the Choquet integral $C_{\mu}(f)$ of $f: X \rightarrow [0,1]$ with respect to $\mu$ is defined by
+$$
+C_{\mu}(f) := \sum_{i=1}^n (f(x_{(i)}) - f(x_{(i-1)}))\mu(X_{(i)}),
+$$
+where $ f(x_{(i)})$ indicates the the indices have been permuted so that
+$ 0 \leq f(x_{(1)}) \leq \cdots \leq f(x_{(n)})$, $X_{(i)} = \{x_{(i)}, \dots ,x_{(n)}\}$ and $f(x_{(0)})=0.$
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\title{Interpretation of the Choquet integral}
+\begin{itemize}
+\item Let us consider a problem of evaluating students in a high school with respect to three subjects: Mathematics (M), Physics (P) and Literature (L) on a scale from 0 to 10. \\
+\item Usually, this is done by a weighted sum. Suppose that this school is more scientifically oriented, so that the weights are $w_M = 3/8,$ $w_P=3/8$ and $w_L=2/8.$
+\end{itemize}
+\begin{table}[]
+\begin{tabular}{llllc}
+\hline
+Student  & M & P & L & Weighted sum \\
+ \hline
+ A & 9 & 8 & 5 &  7.625\\
+ B & 5 & 6 & 9 &  6.375\\
+ C & 7 & 8 & 7 &  7.375\\
+ \hline
+\end{tabular}
+
+\end{table}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item If the school wants to favour well rounded students without weaknesses then student C should be considered better than student A. \\
+\item Usually, students that are good at mathematics are also good at physics (and vice versa), so that the evaluation is overestimated (underestimated) in the weighted sum for students good (bad) at mathematics and physics. \\
+\item We solve this by finding a suitable fuzzy measure $\mu$ and the Choquet integral.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Individually, we still want to emphasize science so we put the weights
+$$\mu(\{M\}) = \mu(\{P\}) = 0.45, \; \mu(\{L\}) = 0.3.$$\\
+The initial ratio (3,3,2) is kept unchanged.\\
+\item Since mathematics and physics overlap, the weight of $\{M,P\}$ should be lower than the sum:
+$$
+\mu(\{M,P\}) = 0.5 < 0.45 + 0.45.
+$$
+\item Also we should reward those who are both good at science \emph{and} literature so that the weight attributed to $\{M,L\}$ and $\{P,L\}$ be higher than the individual sum:
+$$
+\mu(\{M,L\}) = \mu(\{P,L\}) = 0.9 > 0.45 + 0.3.
+$$
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{itemize}
+\item $\mu(\emptyset) = 0, \; \mu(\{M,P,L\}) = 1$ by definition.
+\end{itemize}
+Applying the fuzzy measure to the three students we get the following result:
+\begin{table}[]
+\begin{tabular}{llllc}
+\hline
+Student  & M & P & L & Choquet integral \\
+ \hline
+ A & 9 & 8 & 5 &  6.95\\
+ B & 5 & 6 & 9 &  6.4\\
+ C & 7 & 8 & 7 &  7.45\\
+ \hline
+\end{tabular}
+\end{table}
+We have achieved our goal while ranking student B lower than A since science is rewarded higher.
+
+\end{frame}
+\end{document}
