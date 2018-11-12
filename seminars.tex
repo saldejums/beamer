@@ -6,23 +6,49 @@
 \usepackage{amsthm,amssymb,amsmath}
 \usepackage{fontspec}
 \usepackage{breqn}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
 
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{On Choquet integral with respect to a rough measure}
+\author{Emils Kalugins}
 
 \begin{document}
 \begin{frame}
+	\maketitle
+\end{frame}
+\begin{frame}
+\frametitle{Measure and Fuzzy measure}
+
+	\begin{definition}
+		Let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A set function $\mu : \Sigma \rightarrow \mathbb{R}_{\geq 0}$ is a measure on $(X,\Sigma)$ if it satisfies the following axioms:
+		\begin{enumerate}
+			\item $\mu(\emptyset) = 0.$ \\
+			\item $\mu\left(\bigcup\limits_{i=1}^\infty E_i \right) = \sum\limits_{i=1}^\infty \mu(E_i)$ for all countable collections $\{E_i\}_{i=1}^\infty$ of pairwise disjoint sets in $\Sigma.$		
+		\end{enumerate}
+
+
+	\end{definition}
+
 \begin{definition}
-A set function $\mu:2^{X} \rightarrow \mathbb{R}^+$ is a fuzzy measure on $(X, 2^X)$ if it satisfies the following axioms:
+
+	Let $X$ be a set. A set function $\mu:2^{X} \rightarrow \mathbb{R}_{\geq 0}$ is a fuzzy measure on $(X, 2^X)$ if it satisfies the following axioms:
 
 \begin{enumerate}
-\item $\mu(\emptyset) =0$ \\
-\item $A \subseteq B \text{ implies } \mu(A) \leq \mu(B)$ for $A,B \in 2^X$
+\item $\mu(\emptyset) =0.$ \\
+\item $A \subseteq B \text{ implies } \mu(A) \leq \mu(B)$ for $A,B \in 2^X$.
 \end{enumerate}
 
 \end{definition}
+
 \end{frame}
 
 \begin{frame}
+\frametitle{Choquet integral}
+
 \begin{definition}
+Let $X$ be a finite, non-empty set whose elements are denoted by $x_1,\dots,x_n$. 
 Let $\mu$ be a fuzzy measure on $(X,2^X)$. Then the Choquet integral $C_{\mu}(f)$ of $f: X \rightarrow [0,1]$ with respect to $\mu$ is defined by
 $$
 C_{\mu}(f) := \sum_{i=1}^n (f(x_{(i)}) - f(x_{(i-1)}))\mu(X_{(i)}),
@@ -30,10 +56,95 @@ $$
 where $ f(x_{(i)})$ indicates the the indices have been permuted so that
 $ 0 \leq f(x_{(1)}) \leq \cdots \leq f(x_{(n)})$, $X_{(i)} = \{x_{(i)}, \dots ,x_{(n)}\}$ and $f(x_{(0)})=0.$
 \end{definition}
+
 \end{frame}
 
 \begin{frame}
-\title{Interpretation of the Choquet integral}
+
+\frametitle{Interpretation of Choquet integral}
+	\begin{figure}
+		\centering
+	\begin{tikzpicture}
+		\draw[->] (0,0) -- (8,0);
+		\draw[->] (0,0) -- (0,6);
+		\node[anchor=east,align=right] at (0,1.2) {$f(x_{(1)})$};
+		\node[anchor=east,align=right] at (0,2.5) {$f(x_{(2)})$};
+		\node[anchor=east,align=center] at (-0.5,3.3) {$\vdots$};
+		\node[anchor=east,align=right] at (0,4) {$f(x_{(n-1)})$};
+		\node[anchor=east,align=right] at (0,5) {$f(x_{(n)})$};
+
+		\draw[black] (0,5) -- (0.8,5) -- (0.8,0);
+		\draw[black] (0,4) -- (2.6,4) -- (2.6,0);
+		\draw[black] (0,2.5) -- (5.0,2.5) -- (5.0,0);
+		\draw[black] (0,1.2) -- (6.9,1.2) -- (6.9,0);
+
+		\node[anchor=north] at (0.8,0) {$\mu(X_{(n)})$};
+		\node[anchor=north] at (2.6,0) {$\mu(X_{(n-1)})$};
+
+		\node[anchor=north] at (3.9,-0.1) {$\cdots$};
+		\node[anchor=north] at (5.0,0) {$\mu(X_{(2)})$};
+
+
+		\node[anchor=north] at (6.9,0) {$\mu(X_{(1)})$};
+
+	\end{tikzpicture}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Alternative definition}
+	\begin{proposition}
+Let $X$ be a finite, non-empty set and $\mu$ be a fuzzy measure on $(X,2^X)$. Then
+$$
+		C_{\mu}(f) = \sum_{i=1}^n f(x_{(i)})(\mu(X_{(i)})-\mu(X_{(i+1)})),
+$$
+		where $ f(x_{(i)})$ indicates the the indices have been permuted so that
+$ 0 \leq f(x_{(1)}) \leq \cdots \leq f(x_{(n)})$, $X_{(i)} = \{x_{(i)}, \dots ,x_{(n)}\}$ and $X_{(n+1)} = \emptyset$.
+	\end{proposition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Integral with respect to a measure}
+	\begin{figure}
+		\centering
+
+	\begin{tikzpicture}
+
+		\draw[->] (0,0) -- (8,0);
+		\draw[->] (0,0) -- (0,6);
+		\draw (1.5,0.1) -- (1.5,-0.1);
+		\draw (1.0,0) -- (1.0,4) -- (2.0,4) -- (2.0,0);
+		\draw[decorate,decoration={brace,mirror,amplitude=3pt},yshift=-10pt] (1.0,0) -- (2.0,0) node [black,midway,yshift=-12pt] {\footnotesize $\mu(\{x_1\})$};
+
+		\node[anchor=north] at (1.5,0) {$x_1$};
+		\node[anchor=south] at (1.5,4) {$f(x_1)$};
+
+		\draw (3,0.1) -- (3,-0.1);
+		\draw (2.0,0) -- (2.0,2.4) -- (4.0,2.4) -- (4.0,0);
+		\draw[decorate,decoration={brace,mirror,amplitude=3pt},yshift=-10pt] (2.0,0) -- (4.0,0) node [black,midway,yshift=-12pt] {\footnotesize $\mu(\{x_2\})$};
+
+		\node[anchor=north] at (3.0,0) {$x_2$};
+		\node[anchor=south] at (3.0,2.4) {$f(x_2)$};
+		\node[anchor=north] at (5,0) {$\cdots$};
+
+		\node[anchor=north] at (6.5,0) {$x_n$};
+		\node[anchor=south] at (6.5,3.3) {$f(x_n)$};
+
+		\draw (6.5,0.1) -- (6.5,-0.1);
+
+		\draw (5.8,0) -- (5.8,3.3) -- (7.2,3.3) -- (7.2,0);
+		\draw[decorate,decoration={brace,mirror,amplitude=3pt},yshift=-10pt] (5.8,0) -- (7.2,0) node [black,midway,yshift=-12pt] {\footnotesize $\mu(\{x_n\})$};
+
+	\end{tikzpicture}
+
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Example (Grabisch (1996))}
 \begin{itemize}
 \item Let us consider a problem of evaluating students in a high school with respect to three subjects: Mathematics (M), Physics (P) and Literature (L) on a scale from 0 to 10. \\
 \item Usually, this is done by a weighted sum. Suppose that this school is more scientifically oriented, so that the weights are $w_M = 3/8,$ $w_P=3/8$ and $w_L=2/8.$
@@ -53,6 +164,7 @@ Student  & M & P & L & Weighted sum \\
 \end{frame}
 
 \begin{frame}
+	\frametitle{Example (Grabisch (1996))}
 \begin{itemize}
 \item If the school wants to favour well rounded students without weaknesses then student C should be considered better than student A. \\
 \item Usually, students that are good at mathematics are also good at physics (and vice versa), so that the evaluation is overestimated (underestimated) in the weighted sum for students good (bad) at mathematics and physics. \\
@@ -62,10 +174,11 @@ Student  & M & P & L & Weighted sum \\
 \end{frame}
 
 \begin{frame}
+
+	\frametitle{Example (Grabisch (1996))}
 \begin{itemize}
 \item Individually, we still want to emphasize science so we put the weights
 $$\mu(\{M\}) = \mu(\{P\}) = 0.45, \; \mu(\{L\}) = 0.3.$$\\
-The initial ratio (3,3,2) is kept unchanged.\\
 \item Since mathematics and physics overlap, the weight of $\{M,P\}$ should be lower than the sum:
 $$
 \mu(\{M,P\}) = 0.5 < 0.45 + 0.45.
@@ -74,12 +187,12 @@ $$
 $$
 \mu(\{M,L\}) = \mu(\{P,L\}) = 0.9 > 0.45 + 0.3.
 $$
+\item $\mu(\emptyset) = 0$ and $\mu(\{M,P,L\}) = 1$ by definition.
 \end{itemize}
 \end{frame}
 \begin{frame}
-\begin{itemize}
-\item $\mu(\emptyset) = 0, \; \mu(\{M,P,L\}) = 1$ by definition.
-\end{itemize}
+
+	\frametitle{Example (Grabisch (1996))}
 Applying the fuzzy measure to the three students we get the following result:
 \begin{table}[]
 \begin{tabular}{llllc}
@@ -95,4 +208,144 @@ Student  & M & P & L & Choquet integral \\
 We have achieved our goal while ranking student B lower than A since science is rewarded higher.
 
 \end{frame}
-\end{document}
+
+\begin{frame}
+	\frametitle{Information systems}
+
+	Let $S=(U,A)$ be an information system where $U$ is a non-empty, finite set of objects and A is a non-empty
+	finite set of atributes, where $a: U \rightarrow V_a$ for every $a \in A$. For each $B \subseteq A$, there is associated an equivelence relation $Ind_A(B)$ such that
+$$	
+		Ind_A(B)= \{(x,y)\in U^2 \; | \; \forall a \in B. a(x) = a(y)\}.
+$$
+
+	\emph{Example.} Consider the following decision table.
+
+\begin{table}
+	\begin{tabular}{cccccc}
+		\hline 
+		$X$& $a$& $e$& $X$& $a$& $e$\\
+		\hline
+		$x_1$ & $0.20$ & $0$&  $x_6$ & $0.45$ & $1$ \\
+		$x_2$ & $0.45$ & $1$ & $x_7$ & $0.46$ & $1$ \\
+		$x_3$ & $0.45$ & $1$ & $x_8$ & $0.40$ & $1$  \\
+		$x_4$ & $0.11$ & $0$ & $x_9$ & $0.41$ & $1$ \\
+		$x_5$ & $0.10$ & $0$ & $x_{10}$ & $0.20$ & $0$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Set approximations}
+	The notation $[x]_B$ denotes equivelence classes of $Ind_A(B)$. For $X \subseteq U$ the set $X$ can be approximated from the information contained in $B$ by constructing $B$-lower and $B$-upper approximation denoted by $\underline{B}X$ and $\overline{B}X$ respectively where 
+
+	\begin{equation*}
+		\begin{split}
+			\underline{B}X &= \{x \; | \; [x]_B \subseteq X \},	\\
+			\overline{B}X &= \{x \; | \; [x]_B \cap X \neq \emptyset \}.
+		\end{split}
+	\end{equation*}
+	\begin{example}
+	Let $X= \{x_1\}, B=\{a\}.$ Then $\underline{B}X = \emptyset$ and $\overline{B}X = \{x_1,x_{10}\}$.\\
+		Let $X=\{x_1,x_2,x_4,x_{10}\}, B=\{a\}.$ Then $\underline{B}X = \{x_1,x_4,x_{10}\}$ and $\overline{B}X = \{x_1,x_2,x_3,x_4,x_6,x_{10}\}. $ 
+	\end{example}
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Rough measure}
+
+\begin{definition}
+	Let $u \in U$. An additive set function $\rho_u : 2^X \rightarrow \mathbb{R}_{\geq 0}$ defined by $\rho_u(Y) = \rho'(Y\cap [u]_B])$ for $Y \in 2^X$, where $\rho' : 2^X \rightarrow \mathbb{R}_{\geq0}$ is a set function, is called a \emph{rough measure} relative to $U/Ind_A(B)$ and $u$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Rough membership function}
+
+\begin{definition}
+	Let $S=(U,A)$ be an information system, $B \subseteq A, u \in U$ and let $[u]_B$ be an equivelence class of an object $u \in U$ of $Ind_A(B)$. A set function given by 
+	$$
+	\mu_u^B : 2^U \rightarrow [0,1], \text{ where } \mu_u^B (X) = \frac{card(X \cap [u]_B)}{card([u]_B)}
+	$$
+for any $X \in 2^U$ is called a \emph{rough membership set function}.
+\end{definition}
+
+\begin{proposition}
+Let $S=(U,A)$ be an information system. For every $u \in U$ and $B \subseteq A$ the function $\mu_u^B$ is a rough measure.
+
+\end{proposition}
+\end{frame}
+
+\begin{frame}
+\frametitle{Rough integral}
+
+\begin{definition}
+	Let $\rho$ be a rough measure on $X$ where the elements of $X$ are denoted by $x_1,\dots,x_n$. The discrete rough integral of $f : X \rightarrow \mathbb{R}_{\geq 0}$ with respect to the rough measure $\rho$ is defined by
+	$$
+	\int_X f \; d\rho = \sum_{i=1}^n (f(x_{(i)})- f(x_{(i-1)}))\rho(X_{(i)})
+	$$
+
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example}
+Suppose that we have two identical sensors with five measurements each. We consider the measurement of the relevance of an sensor using a rough integral. 
+
+\begin{table}
+	\begin{tabular}{cccccc}
+		\hline 
+		$X_1$& $a$& $e$& $X_2$& $a$& $e$\\
+		\hline
+		$x_1$ & $0.20$ & $0$&  $x_6$ & $0.45$ & $1$ \\
+		$x_2$ & $0.45$ & $1$ & $x_7$ & $0.46$ & $1$ \\
+		$x_3$ & $0.45$ & $1$ & $x_8$ & $0.40$ & $1$  \\
+		$x_4$ & $0.11$ & $0$ & $x_9$ & $0.41$ & $1$ \\
+		$x_5$ & $0.10$ & $0$ & $x_{10}$ & $0.20$ & $0$\\
+		\hline
+	\end{tabular}
+\end{table}
+	We begin by constructing $\mu_u^e$ taking $u=x_2$ so that $[u]_e = \{x_2,x_3,x_6,x_7,x_8,x_9\}.$
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example}
+	Since $a(x_1) = 0.20, a(x_2) = 0.45, a(x_3)=0.45, a(x_4) = 0.11$ and $a(x_5) = 0.10$, we have \\~
+
+	$X_{(1)} = \{x_{(1)},x_{(2)},x_{(3)},x_{(4)},x_{(5)}\} = \{x_5,x_4,x_1,x_2,x_3\},$ 
+	$$\mu_u^e(X_{(1)}) = \frac{card(X_{(1)}\cap[u]_e)}{card([u]_e)} = \frac{card(\{x_2,x_3\})}{card(\{x_2,x_3,x_6,x_7,x_8,x_9\})} = \frac{1}{3},$$
+	$\mu_u^e(X_{(2)}) = \mu_u^e(X_{(3)}) = \mu_u^e(X_{(4)}) = \frac{1}{3}$, \\
+
+
+	$\mu_u^e(X_{(5)}) = \frac{1}{6}.$\\~
+
+	$\int_{X_1} a \;d\mu_u^e = 0.1\cdot1/3+(0.11-0.1) \cdot 1/3 + (0.45-0.11)\cdot 1/3 + (0.45-0.45)\cdot 1/6 = 0.45/3 = 0.15$
+
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example}
+	After reordering the sensor values from $X_2$, we similarly obtain $\int_{X_{2}} a \; d\mu_u^e = 0.285.$ \\ 
+	\vfill
+	From these two cases, it can be seen the relevance of attribute improves as the value of the rough integral increases in value. For a particular $[u]_e$, the rough integral measures the relevance of an attribute (sensor) for a particular table in a classification effort. \\
+\end{frame}
+\begin{frame}
+	\frametitle{References}
+	G. Choquet, Theory of capacities. Annales de l'Institut Fourier, 5, 1953, 131-295.\\
+	\vfill
+
+	M. Grabisch, Alternative expressions of the discrete Choquet integral. In: Proc. 7th Int. Fuzzy Systems Association Worlds Congress (IFSA'97), Prague, 25-29 June 1997, 472-477.\\
+
+	\vfill
+
+Pawlak Z., Peters J.F., Skowron A., Suraj Z., Ramanna S., Borkowski M. (2003) Rough Measures, Rough Integrals and Sensor Fusion. In: Inuiguchi M., Hirano S., Tsumoto S. (eds) Rough Set Theory and Granular Computing. Studies in Fuzziness and Soft Computing, vol 125. Springer, Berlin, Heidelberg
+
+\end{frame}
+	\end{document}
