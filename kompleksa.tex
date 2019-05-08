@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage{polyglossia}
+\DeclareMathOperator{\Ln}{Ln}
+
+\begin{document}
+
+\section*{5. variants}
+
+\subsection*{1. uzdevums}
+
+\begin{align*}
+  \Ln{(-3 +i)} = \ln{|-3 + 1|} + i(\arg{(-3 + i)} + 2k\pi) &= \ln{\sqrt{10}} + i\left(\arctan{\left(-\frac{1}{3} \right)}+\pi  + 2k\pi \right)\\
+  &= \ln{\sqrt{10}} + i\left[(2k+1)\pi - \arctan{\left(\frac{1}{3}\right)}\right]\\
+  &\approx 1.151 + i\left[(2k+1)\pi - 0.322\right], ~  k \in \mathbb{Z}.
+\end{align*}
+
+\begin{align*}
+  \tanh{\left( \ln{3} + \frac{\pi i}{4}\right)} &= \frac{\sinh{\left( \ln{3} + \frac{\pi i}{4}\right)}}{\cosh{\left( \ln{3} + \frac{\pi i}{4}\right)}} =
+  \frac{\sinh{(\ln{3})}\cos{\left(\frac{\pi}{4}\right)} + i\cosh{(\ln{3})}\sin{\left(\frac{\pi}{4}\right)}}{\cosh{(\ln{3})}\cos{\left(\frac{\pi}{4}\right)} + i\sinh{(\ln{3})}\sin{\left(\frac{\pi}{4}\right)}} = \\
+ &= \frac{\sinh{(\ln{3})} + i\cosh{(\ln{3})}}{\cosh{(\ln{3})} + i\sinh{(\ln{3})}} = \frac{\frac{4}{3}+i\frac{5}{3}}{\frac{5}{3} + i\frac{4}{3}} = \frac{4 + 5i}{5+4i} = \frac{(4+5i)(5-4i)}{41} = \\
+  &=\frac{40}{41} + i\frac{9}{41}.
+\end{align*}
+
+\begin{align*}
+  i^{2i} = e^{2i \Ln i} = \exp{[2i(\ln 1 + i\frac{\pi}{2} + i2k\pi)]} = \exp{\left[-(4k+1)\pi \right]}, ~ k\in \mathbb{Z}.
+\end{align*}
+
+\begin{align*}
+\arctan{(1 +2i)} &= \frac{1}{2i} \Ln{\frac{i-1}{3-i}} = -\frac{i}{2}\left(\Ln{(i-1)}-\Ln{(3-i)}\right) = \\
+&= -\frac{i}{2}\left(\ln{\sqrt{2}} + i\left(\frac{7\pi}{4} + 2k\pi\right) - \ln{\sqrt{10}} - i(2p+1)\pi + i\arctan{\left(\frac{1}{3}\right)}\right) \\
+&= \frac{\left(\frac{7\pi}{4} + 2k\pi\right) - (2k+1)\pi + \arctan{\left(\frac{1}{3}\right)}}{2} +
+i\frac{\ln{\sqrt{5}}}{2} \\
+&= \frac{\arctan{\left(\frac{1}{3}\right)} + \frac{3\pi}{4} + 2k\pi}{2} + i\frac{\ln{\sqrt{5}}}{2}, ~ k \in \mathbb{Z}
+\end{align*}
+
+\subsection*{2. uzdevums}
+Tā kā funkcija $\varphi$ netiek precīzāk aprakstīta, tad vienīgi atliek rakstīt vispārīgo atrisinājumu.
+
+$$
+f(z) =f(x,y)= \varphi(ax + by) + i\int\limits_{(x_0,y_0)}^{(x,y)} -b\frac{\partial\varphi(x,y)}{\partial y} dx + a \frac{\partial \varphi(x,y)}{\partial x} dy + C,
+$$
+kur $(x_0,y_0)$ jebkurš punkts, kur funkcija $\varphi$ analītiska.
+\subsection*{3. uzdevums}
+Der funkcija $f(z) = \frac{(1+2i)z + 5}{(2-i)z + 2-i}. \;  f(\infty) = i, f(-1) = \infty, f(i) = 1.$  
+\end{document}
